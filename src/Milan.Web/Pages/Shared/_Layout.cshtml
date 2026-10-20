@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] · MILAN</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/banner.css" asp-append-version="true" />
+</head>
+<body>
+    <header class="site-header">
+        <div class="topbar"><a asp-page="/Index" class="brand"><img src="~/images/brand.png" alt="MILAN" /></a>
+            <nav aria-label="Navegación principal">
+                <a asp-page="/Index">Catálogo</a><a asp-page="/Carrito">Carrito</a>
+                @if (User.Identity?.IsAuthenticated == true)
+                {
+                    <a asp-page="/MisPedidos">Mis pedidos</a><span class="welcome">Hola, @User.Identity.Name</span>
+                    <form asp-page="/Cuenta/Salir" method="post" class="inline"><button class="nav-button">Cerrar sesión</button></form>
+                }
+                else { <a asp-page="/Cuenta/Entrar">Iniciar sesión</a> }
+            </nav>
+        </div>
+    </header>
+    <main>@RenderBody()</main>
+    <footer><span>MILAN · Mercado Interactivo en Línea de Artículos y Novedades</span><span>Proyecto educativo · Workshop CODE</span></footer>
+</body>
+</html>

@@ -1,0 +1,14 @@
+@page
+@model Milan.Web.Pages.CompraModel
+@attribute [Microsoft.AspNetCore.Authorization.Authorize]
+@{ ViewData["Title"] = "Confirmar compra"; }
+<section class="wrap page-section"><p class="eyebrow">ÚLTIMO PASO</p><h1>Revisa y confirma tu pedido</h1>
+    @if (Model.Cart.Items.Count == 0) { <div class="empty"><p>Tu carrito está vacío.</p><a asp-page="/Index" class="button">Volver al catálogo</a></div> }
+    else
+    {
+        <div asp-validation-summary="All" class="validation"></div>
+        <div class="review-list">@foreach (var item in Model.Cart.Items) { <div><span>@item.Name <small>× @item.Quantity · @item.UnitPrice.ToString("C2") c/u</small></span><strong>@item.Subtotal.ToString("C2")</strong></div> }</div>
+        <div class="cart-total"><span>Total a pagar</span><strong>@Model.Cart.Total.ToString("C2")</strong></div>
+        <form method="post" class="confirmation-form"><input type="hidden" name="confirmationKey" value="@Model.ConfirmationKey" /><label class="check-label"><input type="checkbox" name="confirmed" value="true" required /> Confirmo que deseo realizar esta compra.</label><p class="muted">El pago es una simulación educativa. No se procesará ningún cargo real.</p><button class="button" type="submit">Confirmar y pagar (simulado)</button></form>
+    }
+</section>

@@ -1,0 +1,8 @@
+@page
+@model Milan.Web.Pages.PedidoConfirmadoModel
+@attribute [Microsoft.AspNetCore.Authorization.Authorize]
+@{ ViewData["Title"] = "Pedido confirmado"; }
+<section class="wrap page-section confirmation"><div class="success-mark">✓</div><p class="eyebrow">COMPRA EXITOSA</p><h1>¡Gracias por tu compra!</h1><p>Tu pago simulado se registró correctamente.</p>
+    @if (Model.Order is not null) { <div class="order-summary"><p>Número de pedido <strong>@Model.Order.Id.ToString("N")[..12].ToUpperInvariant()</strong></p><p>Total <strong>@Model.Order.Total.ToString("C2")</strong></p><p>Estado <strong>@Model.Order.Status</strong></p></div> }
+    <a class="button" asp-page="/MisPedidos">Ver mis pedidos</a>
+</section>

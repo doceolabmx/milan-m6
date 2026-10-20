@@ -1,0 +1,21 @@
+@page
+@model Milan.Web.Pages.IndexModel
+@{ ViewData["Title"] = "Catálogo"; }
+<section class="hero"><div><p class="eyebrow">TECNOLOGÍA PARA VER MÁS LEJOS</p><h1>Explora el mundo<br />desde otra perspectiva.</h1><p>Drones para tus ideas, proyectos y aventuras.</p><a class="button button-light" href="#catalogo">Ver catálogo</a></div></section>
+<section class="catalog-filters" aria-label="Filtros del catálogo">
+    <form method="get" class="filter-form">
+        <label><span>Marca</span><select asp-for="Brand"><option value="">Todas las marcas</option>@foreach (var brand in Model.Brands) { <option value="@brand">@brand</option> }</select></label>
+        <label><span>Tipo</span><select asp-for="Type"><option value="">Todos los tipos</option>@foreach (var type in Model.Types) { <option value="@type">@type</option> }</select></label>
+        <button class="button" type="submit">Filtrar catálogo</button>
+        @if (!string.IsNullOrEmpty(Model.Brand) || !string.IsNullOrEmpty(Model.Type)) { <a class="clear-filters" asp-page="/Index">Limpiar filtros</a> }
+    </form>
+</section>
+<section id="catalogo" class="catalog-section wrap"><div class="section-heading"><div><p class="eyebrow">CATÁLOGO MILAN</p><h2>Encuentra tu próximo vuelo</h2></div><span>@Model.Products.Count artículos</span></div>
+    <div class="product-grid">
+    @foreach (var product in Model.Products)
+    {
+        <article class="product-card"><div class="product-image"><img src="@product.ImagePath" alt="@product.Name" loading="lazy" /></div><div class="product-info"><h3>@product.Name</h3><p>@product.Description</p><div class="product-bottom"><strong>@product.Price.ToString("C2")</strong><form asp-page="/Carrito" asp-page-handler="Agregar" method="post"><input type="hidden" name="productId" value="@product.Id" /><button class="button">Agregar al carrito</button></form></div></div></article>
+    }
+    @if (Model.Products.Count == 0) { <p class="no-results">No hay artículos que coincidan con los filtros seleccionados.</p> }
+    </div>
+</section>

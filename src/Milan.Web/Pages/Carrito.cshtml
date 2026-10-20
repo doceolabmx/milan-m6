@@ -1,0 +1,22 @@
+@page
+@model Milan.Web.Pages.CarritoModel
+@{ ViewData["Title"] = "Carrito"; }
+<section class="wrap page-section"><p class="eyebrow">TU COMPRA</p><h1>Carrito</h1>
+    @if (!string.IsNullOrWhiteSpace(Model.Message)) { <p class="notice">@Model.Message</p> }
+    @if (Model.Cart.Items.Count == 0)
+    { <div class="empty"><p>Tu carrito está vacío.</p><a class="button" asp-page="/Index">Seguir explorando</a></div> }
+    else
+    {
+        <div class="cart-list">
+        @foreach (var item in Model.Cart.Items)
+        {
+            <article class="cart-row"><img src="@item.ImagePath" alt="@item.Name" /><div class="cart-description"><h2>@item.Name</h2><p>@item.UnitPrice.ToString("C2") por artículo</p></div>
+                <form method="post" asp-page-handler="Cantidad" class="quantity-form"><input type="hidden" name="productId" value="@item.ProductId" /><label for="q-@item.ProductId">Cantidad</label><input id="q-@item.ProductId" name="quantity" type="number" min="0" max="99" value="@item.Quantity" /><button class="button button-outline">Actualizar</button></form>
+                <strong>@item.Subtotal.ToString("C2")</strong><form method="post" asp-page-handler="Eliminar"><input type="hidden" name="productId" value="@item.ProductId" /><button class="link-button">Quitar</button></form>
+            </article>
+        }
+        </div>
+        <div class="cart-total"><span>Total</span><strong>@Model.Cart.Total.ToString("C2")</strong></div>
+        <div class="cart-actions"><a asp-page="/Index" class="text-link">Continuar comprando</a><a asp-page="/Compra" class="button">Continuar con la compra</a></div>
+    }
+</section>

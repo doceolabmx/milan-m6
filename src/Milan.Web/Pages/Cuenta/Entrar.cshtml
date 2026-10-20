@@ -1,0 +1,7 @@
+@page
+@model Milan.Web.Pages.Cuenta.EntrarModel
+@{ ViewData["Title"] = "Iniciar sesión"; }
+<section class="wrap page-section login-wrap"><div class="login-card"><p class="eyebrow">BIENVENIDO A MILAN</p><h1>Inicia sesión</h1><p>Accede para completar tu compra y consultar tus pedidos.</p>
+    <form method="post"><input type="hidden" asp-for="ReturnUrl" /><div asp-validation-summary="ModelOnly" class="validation"></div><label asp-for="Email">Correo electrónico</label><input asp-for="Email" type="email" autocomplete="username" required /><label asp-for="Password">Contraseña</label><input asp-for="Password" type="password" autocomplete="current-password" required /><button class="button full" type="submit">Iniciar sesión</button></form>
+    <aside class="demo-accounts"><strong>Cuentas de demostración</strong><p>cliente@doceolab.com · Pass@word1</p><p>admin@doceolab.com · Pass@word1</p><small>Ambas cuentas tienen perfil Cliente. Solo para uso educativo.</small></aside>
+</div></section>

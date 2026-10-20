@@ -1,0 +1,8 @@
+@page
+@model Milan.Web.Pages.MisPedidosModel
+@attribute [Microsoft.AspNetCore.Authorization.Authorize]
+@{ ViewData["Title"] = "Mis pedidos"; }
+<section class="wrap page-section"><p class="eyebrow">TU ACTIVIDAD</p><h1>Mis pedidos</h1>
+    @if (Model.Orders.Count == 0) { <div class="empty"><p>Aún no tienes pedidos.</p><a asp-page="/Index" class="button">Explorar catálogo</a></div> }
+    else { <div class="orders">@foreach (var order in Model.Orders) { <article class="order-card"><div><span class="eyebrow">PEDIDO @order.Id.ToString("N")[..12].ToUpperInvariant()</span><p>@order.CreatedAt.ToLocalTime().ToString("dd 'de' MMMM 'de' yyyy, HH:mm")</p></div><div class="order-products">@foreach (var item in order.Items) { <span>@item.Name × @item.Quantity</span> }</div><strong>@order.Total.ToString("C2")</strong><span class="status">@order.Status</span></article> }</div> }
+</section>
