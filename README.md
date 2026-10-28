@@ -68,3 +68,10 @@ dotnet test Milan.sln
 ```
 
 Las pruebas verifican catálogo, carrito, validaciones, importes, pedidos, idempotencia y privacidad por cliente.
+
+## Repositorios por stack
+
+- [MILAN C](https://github.com/vicasso-mx/milan-c)
+- [MILAN C#](https://github.com/vicasso-mx/milan-cs)
+- [MILAN Android](https://github.com/vicasso-mx/milan-android)
+- [MILAN iOS](https://github.com/vicasso-mx/milan-ios)
