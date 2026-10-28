@@ -17,6 +17,9 @@ src/Milan.Web/       Aplicación ASP.NET Core Razor Pages
   Pages/              Catálogo, carrito, compra, acceso e historial
   wwwroot/             CSS e imágenes seleccionadas de MILAN v1.0.0
 tests/Milan.Tests/    Pruebas unitarias xUnit
+docs/                 Notas de documentación
+  funcionalidades-futuras.md  Pasarela de pago no integrada
+  operacion.md        Cierre de compra sin envío ni logística
 ```
 
 ## Ejecutar
